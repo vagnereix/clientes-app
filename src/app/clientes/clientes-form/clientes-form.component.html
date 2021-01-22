@@ -1,0 +1,76 @@
+<h1 class="mt-4">Olá adm, {{ cliente.id ? 'edite seu cliente!' : 'cadastre seu cliente!' }}</h1>
+
+<ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item active">
+        {{ cliente.id ? 'Edite qualquer campo disponível.' : 'Por favor preecha os campos abaixo.' }}
+    </li>
+</ol>
+
+<div class="container">
+    <!-- #clienteForm é uma diretiva pra declarar um form do Angular-->
+    <form #clienteForm="ngForm" (ngSubmit)="onSubmit()">
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="alert alert-success" role="alert" *ngIf="success == true">
+                    Cliente cadastrado com sucesso!
+                </div>
+                <div class="alert alert-success" role="alert" *ngIf="successUpdate == true">
+                    Cliente atualizado com sucesso!
+                </div>
+                <div class="alert alert-danger" role="alert" *ngFor="let erro of errors">
+                    {{ erro }}
+                </div>
+            </div>
+        </div>
+
+        <div class="row" *ngIf="cliente.id">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>ID:</label>
+                    <input type="text" name="id" [ngModel]="cliente.id" class="form-control" disabled="true"/>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>Data de cadastro:</label>
+                    <input type="text" name="dataCadastro" [ngModel]="cliente.dataCadastro" class="form-control" disabled="true"/>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>Nome: *</label>
+                    <input type="text" name="nome" [(ngModel)]="cliente.nome" class="form-control" />
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>CPF: *</label>
+                    <input type="text" name="cpf" [(ngModel)]="cliente.cpf" class="form-control" />
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <button type="submit" class="btn btn-success" *ngIf="!cliente.id">
+                    <i class="fa fa-save"></i>
+                    Cadastrar
+                </button>
+
+                <button type="submit" class="btn btn-primary" *ngIf="cliente.id">
+                    <i class="fa fa-sync-alt"></i>
+                    Salvar edição
+                </button>
+
+                <button class="btn btn-danger ml-1" (click)="voltarParaListagem()">
+                    <i class="fa fa-arrow-alt-circle-left"></i>
+                    Voltar
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
