@@ -23,7 +23,7 @@
     <div class="row">
         <div class="col-md-3">
             <button (click)="novoCadastro()" class="btn btn-warning">
-                <i class="fa fa-plus-circle"></i>
+                <i class="fa fa-plus"></i>
                 Novo cliente
             </button>
         </div>
@@ -50,7 +50,7 @@
                         <td> {{ cliente.cpf }} </td>
                         <td> {{ cliente.dataCadastro }} </td>
                         <td>
-                            <button class="btn btn-primary" routerLink="/clientes-form/{{cliente.id}}">
+                            <button class="btn btn-primary" routerLink="/cliente/form/{{cliente.id}}">
                                 <i class="fa fa-edit"></i>
                             </button>
 
