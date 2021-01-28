@@ -12,11 +12,11 @@
 
         <div class="row">
             <div class="col-md-12">
-                <div class="alert alert-success" role="alert" *ngIf="success == true">
-                    Cliente cadastrado com sucesso!
+                <div class="alert alert-success" role="alert" *ngIf="success">
+                    {{ success }}
                 </div>
-                <div class="alert alert-success" role="alert" *ngIf="successUpdate == true">
-                    Cliente atualizado com sucesso!
+                <div class="alert alert-success" role="alert" *ngIf="successUpdate">
+                    {{ successUpdate }}
                 </div>
                 <div class="alert alert-danger" role="alert" *ngFor="let erro of errors">
                     {{ erro }}

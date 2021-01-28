@@ -12,8 +12,8 @@ import { Router, ActivatedRoute } from "@angular/router";
 export class ClientesFormComponent implements OnInit {
 
   cliente: Cliente;
-  success: boolean = false;
-  successUpdate: boolean = false;
+  success!: string;
+  successUpdate!: string;
   errors: string[] = [];
   id!: number;
 
@@ -48,11 +48,11 @@ export class ClientesFormComponent implements OnInit {
     if(this.id){
       this.service.atualizar(this.cliente)
       .subscribe(
-        responde => {
-          this.successUpdate = true;
+        response => {
+          this.successUpdate = 'Cliente atualizado com sucesso!'
           this.errors = [];
         }, errorResponse => {
-          this.successUpdate = false;
+          this.successUpdate = ''
           this.errors = ['Atualização de cliente falhou!'];
         }
       )
@@ -60,12 +60,12 @@ export class ClientesFormComponent implements OnInit {
       this.service.salvar(this.cliente)
       .subscribe(
         response => {
-        this.success = true;
+        this.success = 'Cliente cadastrado com sucesso!'
         this.errors = [];
         this.cliente = response;
       }, errorResponse => {
         this.errors = errorResponse.error.errors;
-        this.success = false;
+        this.success = ''
         ;
       })  
     }  
